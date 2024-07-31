@@ -4,7 +4,6 @@ import sys
 from PIL import Image
 import platform
 
-
 def os_release():
     # Check if the operating system is Windows
     if platform.system() != "Windows":
@@ -13,17 +12,14 @@ def os_release():
     else:
         return platform.release()
 
-
 def check_path():
     if not os.path.exists("./imgs"):
         os.makedirs("./imgs")
-
 
 def get_image_type(image_path):
     # Open the image and return its format
     with Image.open(image_path) as img:
         return img.format.lower()
-
 
 def is_large_image(image_path, min_width=1920, min_height=1080):
     # Check if the image dimensions are larger than or equal to the specified minimum
@@ -31,10 +27,8 @@ def is_large_image(image_path, min_width=1920, min_height=1080):
         width, height = img.size
         return width >= min_width and height >= min_height
 
-
 def copy_file(path):
     global width, height
-    print(os.listdir(path))
     for img in os.listdir(path):
         src_img = os.path.join(path, img)
         if is_large_image(src_img, width, height):
